@@ -73,6 +73,10 @@ if [[ ! -z $(which git) ]]; then
     cp -v git/gitconfig ~/.gitconfig
     cp -v git/gitconfig_extras ~/.gitconfig_extras
     cp -v git/gitignore ~/.gitignore
+
+    info "GPG autosigning is not enabled in this init.sh, you'll need to set that up like so:"
+    info "  git config --global user.signingkey <GPG_PUBKEY_ID>"
+    info "  git config --global commit.gpgsign true"
 else
     warning "git is not installed, or not in path, skipping git config files"
 fi
