@@ -61,9 +61,11 @@ info "Copying across bashstrap base"
 mkdir -p ~/.dotfiles/bash
 
 cp -v bash/z.sh ~/.dotfiles/bash
-cp -v bash/bash_profile ~
-cp -v bash/bash_extras ~
-cp -v bash/bashrc ~
+cp -v bash/bash_profile ~/.bash_profile
+cp -v bash/bashrc ~/.bashrc
+
+# Only overwrite if existing extras don't exist
+[[ ! -f ~/.bash_extras ]] && cp -v bash/bash_extras ~/.bash_extras
 
 # Initialize git config
 
@@ -71,8 +73,9 @@ cp -v bash/bashrc ~
 if [[ ! -z $(which git) ]]; then
     info "Copying across git files"
     cp -v git/gitconfig ~/.gitconfig
-    cp -v git/gitconfig_extras ~/.gitconfig_extras
     cp -v git/gitignore ~/.gitignore
+
+    [[ ! -f ~/.gitconfig_extras ]] && cp -v git/gitconfig_extras ~/.gitconfig_extras
 
     info "GPG autosigning is not enabled in this init.sh, you'll need to set that up like so:"
     info "  git config --global user.signingkey <GPG_PUBKEY_ID>"
