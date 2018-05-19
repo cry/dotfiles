@@ -48,13 +48,8 @@ if [[ $(uname) == "Darwin" ]]; then
     fi
 else
     info "Not enabling italic fonts on non Darwin platform"
-
-    # Account for Darwin sed
-    if [[ $(uname) == "Darwin" ]]; then
-        sed -i '' 's/-italics//g' bash/bash_profile
-    else
-        sed -i 's/-italics//g' bash/bash_profile
-    fi
+    
+    sed -i 's/-italic//g' bash/bash_profile
 fi
 
 # Touch .hushlogin to disable banners where applicable
