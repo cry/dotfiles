@@ -62,6 +62,7 @@ mkdir -p ~/.dotfiles/bash
 
 cp -v bash/z.sh ~/.dotfiles/bash
 cp -v bash/bash_profile ~
+cp -v bash/bash_extras ~
 cp -v bash/bashrc ~
 
 # Initialize git config
@@ -70,6 +71,7 @@ cp -v bash/bashrc ~
 if [[ ! -z $(which git) ]]; then
     info "Copying across git files"
     cp -v git/gitconfig ~/.gitconfig
+    cp -v git/gitconfig_extras ~/.gitconfig_extras
     cp -v git/gitignore ~/.gitignore
 else
     warning "git is not installed, or not in path, skipping git config files"
