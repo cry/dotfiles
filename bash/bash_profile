@@ -1,3 +1,12 @@
+### Prompt Colors
+# Modified version of @gf3’s Sexy Bash Prompt
+# (https://github.com/gf3/dotfiles)
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+	export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+    export TERM=xterm-256color-italic
+fi
+
 ### Self updater
 
 bash ~/.dotfiles/self_update.sh 2>&1 > ~/.dotfiles/update.log &
@@ -38,15 +47,6 @@ alias ga='git add .'
 alias gc='git commit -m' # requires you to type a commit message
 alias gp='git push'
 alias grm='git rm $(git ls-files --deleted)'
-
-### Prompt Colors
-# Modified version of @gf3’s Sexy Bash Prompt
-# (https://github.com/gf3/dotfiles)
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-	export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color-italic
-fi
 
 if tput setaf 1 &> /dev/null; then
 	tput sgr0
