@@ -29,12 +29,12 @@ fi
 
 info "Setting upstream to master (ensures we can check if updates are needed)"
 
-git branch --set-upstream-to origin/master 2>&1 > /dev/null
+git branch --set-upstream-to origin/master > /dev/null 2>&1 
 
 if [[ ! $? == 0 ]]; then
     # We're probably dealing with an old git version
 
-    git branch --set-upstream origin/master 2>&1 > /dev/null
+    git branch --set-upstream origin/master > /dev/null 2>&1
 
     warning "Trying to set upstream with alternate approach."
 
