@@ -141,13 +141,17 @@ if [[ ! -z $(which git) ]]; then
 
         info "Performing Vim plugin install"
 
-        vim -c "PluginInstall" -c "q" -c "q"
+        if tty > /dev/null; then
+            vim -c "PluginInstall" -c "q" -c "q"
 
-        if [[ $? != 0 ]]; then
-            error "Encountered a problem installing vim plugins, should probably investigate that."
-            exit
+            if [[ $? != 0 ]]; then
+                error "Encountered a problem installing vim plugins, should probably investigate that."
+                exit
+            else
+                info "Successfully updated vim plugins!"
+            fi
         else
-            info "Successfully updated vim plugins!"
+            error "No tty available, not opening Vim"
         fi
     fi
 else
