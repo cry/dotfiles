@@ -92,7 +92,9 @@ if [[ ! -z $(which git) ]]; then
     if [[ -z $(which vim)  ]]; then
         warning "Vim is not installed, skipping"
     else
-        info "Detected vim, version header: $(vim --version | head -1)"
+        VIM_VER=$(vim --version | head -1)
+
+        info "Detected vim, version header: ${VIM_VER}"
 
         mkdir -p ~/.vim/bundle
 
@@ -108,6 +110,17 @@ if [[ ! -z $(which git) ]]; then
         fi
 
         success  "Copying vimrc: $(cp -v vim/vimrc ~/.vimrc)"
+
+        # Verify that we have Vim8
+        if [[ ! $VIM_VER =~ "Vi IMproved 8." ]]; then
+            error "Your Vim version does not meet the base requirement of 8+, theme version is being removed to avoid conflicts!"
+
+            if [[ $(uname) == "Darwin" ]]; then
+                sed -i '' -n '1,/" THEME START/p;/" THEME END/,$p' ~/.vimrc
+            else
+                sed -i -n '1,/" THEME START/p;/" THEME END/,$p' ~/.vimrc
+            fi
+        fi
 
         info "Performing Vim plugin install"
 
