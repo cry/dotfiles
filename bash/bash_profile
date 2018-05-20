@@ -9,7 +9,7 @@ fi
 
 ### Self updater
 
-bash ~/.dotfiles/self_update.sh 2>&1 > ~/.dotfiles/update.log &
+bash ~/.dotfiles/self_update.sh > ~/.dotfiles/update.log 2>&1 &
 
 # Ensure that the self update process isn't tied to this terminal
 
