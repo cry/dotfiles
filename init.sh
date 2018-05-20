@@ -62,9 +62,9 @@ touch ~/.hushlogin
 info "Copying across bashstrap base"
 mkdir -p ~/.dotfiles/bash
 
-cp -v bash/z.sh ~/.dotfiles/bash
-cp -v bash/bash_profile ~/.bash_profile
-cp -v bash/bashrc ~/.bashrc
+success "Copying z.sh: $(cp -v bash/z.sh ~/.dotfiles/bash)"
+success "Copying .bash_profile: $(cp -v bash/bash_profile ~/.bash_profile)"
+success "Copying .bashrc: $(cp -v bash/bashrc ~/.bashrc)"
 
 # Only overwrite if existing extras don't exist
 [[ ! -f ~/.bash_extras ]] && cp -v bash/bash_extras ~/.bash_extras
@@ -73,17 +73,55 @@ cp -v bash/bashrc ~/.bashrc
 
 # Only bother initialiizing if git is actually installed
 if [[ ! -z $(which git) ]]; then
-    info "Copying across git files"
-    cp -v git/gitconfig ~/.gitconfig
-    cp -v git/gitignore ~/.gitignore
+    success "Copying .gitconfig: $(cp -v git/gitconfig ~/.gitconfig)"
+    success "Copying .gitignore: $(cp -v git/gitignore ~/.gitignore)"
 
-    [[ ! -f ~/.gitconfig_extras ]] && cp -v git/gitconfig_extras ~/.gitconfig_extras
+    [[ ! -f ~/.gitconfig_extras ]] && success "Copying .gitconfig_extras: $(cp -v git/gitconfig_extras ~/.gitconfig_extras)"
 
-    info "GPG autosigning is not enabled in this init.sh, you'll need to set that up like so:"
-    info "  git config --global user.signingkey <GPG_PUBKEY_ID>"
-    info "  git config --global commit.gpgsign true"
+    warning "GPG autosigning is not enabled in this init.sh, you'll need to set that up like so:"
+    warning "  git config --global user.signingkey <GPG_PUBKEY_ID>"
+    warning "  git config --global commit.gpgsign true"
 else
     warning "git is not installed, or not in path, skipping git config files"
+fi
+
+# Install vim stuff & populate vimrc
+
+# Only bother initialiizing if git is actually installed
+if [[ ! -z $(which git) ]]; then
+    if [[ -z $(which vim)  ]]; then
+        warning "Vim is not installed, skipping"
+    else
+        info "Detected vim, version header: $(vim --version | head -1)"
+
+        mkdir -p ~/.vim/bundle
+
+        info "Cloning vundle repo (will not clone if repo exists)"
+
+        [[ ! -d ~/.vim/bundle/Vundle.vim ]] \
+            && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
+            || warning "Vundle is already cloned, not recloning.."  # Don't clone repo if folder exists
+
+        if [[ $? != 0 ]]; then
+            error "Failed to clone vundle repo! Exiting.."
+            exit
+        fi
+
+        success  "Copying vimrc: $(cp -v vim/vimrc ~/.vimrc)"
+
+        info "Performing Vim plugin install"
+
+        vim -c "PluginInstall" -c "q" -c "q"
+
+        if [[ $? != 0 ]]; then
+            error "Encountered a problem installing vim plugins, should probably investigate that."
+            exit
+        else
+            info "Successfully updated vim plugins!"
+        fi
+    fi
+else
+    warning "Git is not installed, skipping install of Vundle and vim stuff"
 fi
 
 success "Finished init script! Enjoy your new bash"
