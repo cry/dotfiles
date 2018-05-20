@@ -58,7 +58,9 @@ if [[ ! $? == 0 ]]; then
 fi
 
 info "Reapplying init.sh"
-bash init.sh
+bash init.sh & 2>&1
+
+wait $!
 
 if [[ ! $? == 0 ]]; then
     error "Failed to apply new dotfile changes!"
