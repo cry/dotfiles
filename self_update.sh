@@ -31,28 +31,23 @@ info "Setting upstream to master (ensures we can check if updates are needed)"
 
 git branch --set-upstream-to origin/master
 
-UPSTREAM=${1:-"@{u}"}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
-BASE=$(git merge-base @ "$UPSTREAM")
-
-if [ $LOCAL = $REMOTE ]; then
+if [[ ! $(git status) =~ "Your branch is behind" ]]; then
     info "Already up to date with remote, exiting."
     exit
-elif [ $LOCAL = $BASE ]; then
-    info "Updates detected! Updating.."
-    git pull origin master
+fi
 
-    if [[ ! $? == 0 ]]; then
-        error "Failed to merge in remote changes (what)"
-        exit
-    fi
+info "Updates detected! Updating.."
+git pull origin master
 
-    info "Reapplying init.sh"
-    bash init.sh
+if [[ ! $? == 0 ]]; then
+    error "Failed to merge in remote changes (what)"
+    exit
+fi
 
-    if [[ ! $? == 0 ]]; then
-        error "Failed to apply new dotfile changes!"
-        exit
-    fi
+info "Reapplying init.sh"
+bash init.sh
+
+if [[ ! $? == 0 ]]; then
+    error "Failed to apply new dotfile changes!"
+    exit
 fi
