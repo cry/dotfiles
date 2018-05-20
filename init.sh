@@ -141,7 +141,7 @@ if [[ ! -z $(which git) ]]; then
 
         info "Performing Vim plugin install"
 
-        vim -c "PluginInstall" -c "q" -c "q"
+        screen vim -c "PluginInstall" -c "q" -c "q"
 
         if [[ $? != 0 ]]; then
             error "Encountered a problem installing vim plugins, should probably investigate that."
