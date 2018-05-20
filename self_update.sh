@@ -31,6 +31,19 @@ info "Setting upstream to master (ensures we can check if updates are needed)"
 
 git branch --set-upstream-to origin/master
 
+if [[ ! $? == 0 ]]; then
+    # We're probably dealing with an old git version
+
+    git branch --set-upstream origin/master
+
+    warning "Trying to set upstream with alternate approach."
+
+    if [[ ! $? == 0 ]]; then
+        error "Failed to set upstream to master, exiting."
+        exit
+    fi
+fi
+
 if [[ ! $(git status) =~ "Your branch is behind" ]]; then
     info "Already up to date with remote, exiting."
     exit
