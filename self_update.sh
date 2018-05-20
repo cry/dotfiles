@@ -27,19 +27,19 @@ fi
 
 # Ensure that the upstream is set correctly
 
-info "Setting upstream to master (ensures we can check if updates are needed)"
+info "Setting upstream to $(git rev-parse --abbrev-ref HEAD) (ensures we can check if updates are needed)"
 
-git branch --set-upstream-to origin/master > /dev/null 2>&1 
+git branch --set-upstream-to origin/$(git rev-parse --abbrev-ref HEAD) > /dev/null 2>&1 
 
 if [[ ! $? == 0 ]]; then
     # We're probably dealing with an old git version
 
-    git branch --set-upstream origin/master > /dev/null 2>&1
+    git branch --set-upstream origin/$(git rev-parse --abbrev-ref HEAD) > /dev/null 2>&1
 
     warning "Trying to set upstream with alternate approach."
 
     if [[ ! $? == 0 ]]; then
-        error "Failed to set upstream to master, exiting."
+        error "Failed to set upstream to $(git rev-parse --abbrev-ref HEAD), exiting."
         exit
     fi
 fi
@@ -50,7 +50,7 @@ if [[ ! $(git status) =~ "Your branch is behind" ]]; then
 fi
 
 info "Updates detected! Updating.."
-git pull origin master
+git pull origin $(git rev-parse --abbrev-ref HEAD)
 
 if [[ ! $? == 0 ]]; then
     error "Failed to merge in remote changes (what)"
