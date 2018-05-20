@@ -3,6 +3,8 @@
 # Source support functions
 . support.sh
 
+DOTFILES_DIRECTORY=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 ##########
 # Bash
 ##########
@@ -69,6 +71,15 @@ success "Copying .bashrc: $(cp -v bash/bashrc ~/.bashrc)"
 # Only overwrite if existing extras don't exist
 [[ ! -f ~/.bash_extras ]] && cp -v bash/bash_extras ~/.bash_extras
 
+info "Copying across dotfiles requirements"
+
+success "Symlinking ${DOTFILES_DIRECTORY}/self_update.sh -> ~/.dotfiles/self_update.sh"
+ln -s "${DOTFILES_DIRECTORY}/self_update.sh" ~/.dotfiles/self_update.sh
+
+##########
+# Git 
+##########
+
 # Initialize git config
 
 # Only bother initialiizing if git is actually installed
@@ -84,6 +95,10 @@ if [[ ! -z $(which git) ]]; then
 else
     warning "git is not installed, or not in path, skipping git config files"
 fi
+
+##########
+# Vim 
+##########
 
 # Install vim stuff & populate vimrc
 
