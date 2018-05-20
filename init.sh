@@ -154,4 +154,7 @@ else
     warning "Git is not installed, skipping install of Vundle and vim stuff"
 fi
 
+# Reset any changes we've made
+git reset --hard
+
 success "Finished init script! Enjoy your new bash"
