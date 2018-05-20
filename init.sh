@@ -73,8 +73,10 @@ success "Copying .bashrc: $(cp -v bash/bashrc ~/.bashrc)"
 
 info "Copying across dotfiles requirements"
 
-success "Symlinking ${DOTFILES_DIRECTORY}/self_update.sh -> ~/.dotfiles/self_update.sh"
-ln -s "${DOTFILES_DIRECTORY}/self_update.sh" ~/.dotfiles/self_update.sh
+if [[ ! -L ~/.dotfiles/self_update.sh ]]; then
+    success "Symlinking ${DOTFILES_DIRECTORY}/self_update.sh -> ~/.dotfiles/self_update.sh"
+    ln -s "${DOTFILES_DIRECTORY}/self_update.sh" ~/.dotfiles/self_update.sh
+fi
 
 ##########
 # Git 

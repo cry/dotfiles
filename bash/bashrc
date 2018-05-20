@@ -8,11 +8,3 @@
 [ -n "$PS1" ] && \
     source ~/.bash_profile && \
     source ~/.bash_extras
-
-# Enable the self updater
-
-bash ~/.dotfiles/self_update.sh 2>&1 > ~/.dotfiles/update.log &
-
-# Ensure that the self update process isn't tied to this terminal
-
-disown $!
