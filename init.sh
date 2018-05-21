@@ -31,27 +31,21 @@ fi
 
 # Install xterm-italics if on darwin; unsure if this is needed on non darwin
 
-if [[ $(uname) == "Darwin" ]]; then
-    tic term/xterm-256color-italic.terminfo
-    
-    if [[ $? == 0 ]]; then
-        info "Successfully installed italics!"
+tic term/xterm-256color-italic.terminfo
 
-        export TERM="xterm-256color-italic"
+if [[ $? == 0 ]]; then
+    info "Successfully installed italics!"
 
-        info "`tput sitm`This should be in italics!`tput ritm`"
+    export TERM="xterm-256color-italic"
 
-        # Verify that any bash profiles don't contain any TERM overrides
-        NEW_SHELL_TERM=$(unset TERM && bash -lc 'echo $TERM')
+    info "`tput sitm`This should be in italics!`tput ritm`"
 
-        if [[ ! $NEW_SHELL_TERM =~ "xterm-256color-italic" ]]; then
-            warning "Your profile settings export TERM to be $NEW_SHELL_TERM, make sure you replace it with xterm-256color-italic!"
-        fi
+    # Verify that any bash profiles don't contain any TERM overrides
+    NEW_SHELL_TERM=$(unset TERM && bash -lc 'echo $TERM')
+
+    if [[ ! $NEW_SHELL_TERM =~ "xterm-256color-italic" ]]; then
+        warning "Your profile settings export TERM to be $NEW_SHELL_TERM, make sure you replace it with xterm-256color-italic!"
     fi
-else
-    info "Not enabling italic fonts on non Darwin platform"
-    
-    sed -i 's/-italic//g' bash/bash_profile
 fi
 
 # Touch .hushlogin to disable banners where applicable
@@ -157,8 +151,5 @@ if [[ ! -z $(which git) ]]; then
 else
     warning "Git is not installed, skipping install of Vundle and vim stuff"
 fi
-
-# Reset any changes we've made
-git reset --hard
 
 success "Finished init script! Enjoy your new bash"

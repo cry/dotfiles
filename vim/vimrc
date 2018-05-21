@@ -15,12 +15,19 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 " THEME START 
+let t_Co=256
 let g:two_firewatch_italics=1
 colo two-firewatch
 let g:airline_theme='twofirewatch' " if you have Airline installed and want the associated theme
 set background=dark " or light if you prefer the light version
 set termguicolors
 highlight Comment cterm=italic
+
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
 " THEME END
 
 set expandtab       "expand tabs into spaces
