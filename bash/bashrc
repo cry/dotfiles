@@ -6,6 +6,5 @@
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 
 if [[ -n "${PS1}" ]]; then
-    source ~/.bash_profile
     source ~/.bash_extras
 fi

@@ -7,6 +7,8 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM=xterm-256color-italic
 fi
 
+. ~/.bashrc
+
 ### Self updater
 
 bash ~/.dotfiles/self_update.sh > ~/.dotfiles/update.log 2>&1 &
