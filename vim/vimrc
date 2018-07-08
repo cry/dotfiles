@@ -9,6 +9,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'rakr/vim-two-firewatch'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'w0rp/ale'
 
 " End plugins
 call vundle#end()            " required
