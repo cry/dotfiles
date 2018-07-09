@@ -153,4 +153,10 @@ else
     warning "Git is not installed, skipping install of Vundle and vim stuff"
 fi
 
+# Only add tmux stuff if we have tmux installed
+
+if which -s tmux; then
+    cp tmux/.tmux.conf ~
+fi
+
 success "Finished init script! Enjoy your new bash"
