@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
-Plugin 'rakr/vim-two-firewatch'
+Plugin 'cry/vim-two-firewatch'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
 
