@@ -155,7 +155,7 @@ fi
 
 # Only add tmux stuff if we have tmux installed
 
-if which -s tmux; then
+if which tmux > /dev/null 2>&1; then
     cp tmux/.tmux.conf ~/.tmux.conf
 fi
 
