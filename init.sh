@@ -156,7 +156,7 @@ fi
 # Only add tmux stuff if we have tmux installed
 
 if which -s tmux; then
-    cp tmux/.tmux.conf ~
+    cp tmux/.tmux.conf ~/.tmux.conf
 fi
 
 success "Finished init script! Enjoy your new bash"
