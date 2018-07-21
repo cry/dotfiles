@@ -159,4 +159,8 @@ if which tmux > /dev/null 2>&1; then
     cp tmux/.tmux.conf ~/.tmux.conf
 fi
 
+# Add dircolors option
+
+cp dircolors/dircolors.256dark ~/.dircolors.256dark
+
 success "Finished init script! Enjoy your new bash"
