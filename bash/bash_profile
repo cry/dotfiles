@@ -9,6 +9,8 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM=xterm-256color
 fi
 
+export BASH_PROFILE=true
+
 . ~/.bashrc
 
 ### Self updater
@@ -102,9 +104,9 @@ export PS2="\[$ORANGE\]→ \[$RESET\]"
 ### Misc
 
 # Only show the current directory's name in the tab
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+#export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 # init z! (https://github.com/rupa/z)
-. ~/.dotfiles/bash/z.sh
+#. ~/.dotfiles/bash/z.sh
 
 eval $(dircolors ~/.dircolors.256dark)

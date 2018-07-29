@@ -1,7 +1,6 @@
-# Add this PHP shit
-export PATH="/usr/local/opt/php@7.1/bin:$PATH"
-export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
-
 # Add GPG stuff
 GPG_TTY=$(tty)
 export GPG_TTY
+
+export DISPLAY=192.168.56.1:0
+export GDK_SCALE=2
