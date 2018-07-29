@@ -9,9 +9,7 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM=xterm-256color
 fi
 
-export BASH_PROFILE=true
-
-. ~/.bashrc
+BASH_PROFILE=true source ~/.bashrc
 
 ### Self updater
 
