@@ -68,3 +68,5 @@ autocmd BufWritePre *.css :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
 
 :set bs=2 "fix backspace on some consoles
+
+set timeoutlen=1000 ttimeoutlen=0
