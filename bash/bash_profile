@@ -141,3 +141,7 @@ if which tmux > /dev/null 2>&1; then
         __tm_command ssh "$@"
     }
 fi
+
+# Enable ssh completion
+
+complete -W "$(grep -oP 'Host\s\K[^*]+$' ~/.ssh/config)" ssh
