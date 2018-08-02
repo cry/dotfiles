@@ -163,4 +163,8 @@ fi
 
 cp dircolors/dircolors.256dark ~/.dircolors.256dark
 
+# Add .inputrc
+
+cp term/.inputrc ~
+
 success "Finished init script! Enjoy your new bash"
