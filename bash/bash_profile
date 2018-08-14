@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ### Prompt Colors
 # Modified version of @gf3’s Sexy Bash Prompt
 # (https://github.com/gf3/dotfiles)
@@ -26,7 +28,11 @@ disown $!
     && colorflag="-G" \
     || colorflag="--color=yes"
 
-alias ls="command ls ${colorflag}"
+if which gls > /dev/null 2>&1; then
+    alias ls="command gls ${colorflag}"
+else
+    alias ls="command ls ${colorflag}"
+fi
 alias l="ls -lF ${colorflag}" # all files, in long format
 alias la="ls -laF ${colorflag}" # all files inc dotfiles, in long format
 alias lsd='ls -lF ${colorflag} | grep "^d"' # only directories
