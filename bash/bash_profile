@@ -147,3 +147,6 @@ fi
 # Enable ssh completion
 
 complete -W "$(grep -oP 'Host\s\K[^*]+$' ~/.ssh/config)" ssh
+
+# Disable empty completion
+shopt -s no_empty_cmd_completion
