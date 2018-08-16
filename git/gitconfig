@@ -1,5 +1,6 @@
 [alias]
-	# TBC
+    ci = commit
+    pu = push
 [core]
 	# Use custom `.gitignore`
 	excludesfile = ~/.gitignore
