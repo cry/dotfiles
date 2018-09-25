@@ -59,12 +59,12 @@ touch ~/.hushlogin
 info "Copying across bashstrap base"
 mkdir -p ~/.dotfiles/bash
 
-success "Copying z.sh: $(cp -v bash/z.sh ~/.dotfiles/bash)"
-success "Copying .bash_profile: $(cp -v bash/bash_profile ~/.bash_profile)"
-success "Copying .bashrc: $(cp -v bash/bashrc ~/.bashrc)"
+success "Copying z.sh: $(cp -v bash/.z.sh ~/.dotfiles/bash)"
+success "Copying .bash_profile: $(cp -v bash/.bash_profile ~/.bash_profile)"
+success "Copying .bashrc: $(cp -v bash/.bashrc ~/.bashrc)"
 
 # Only overwrite if existing extras don't exist
-[[ ! -f ~/.bash_extras ]] && cp -v bash/bash_extras ~/.bash_extras
+[[ ! -f ~/.bash_extras ]] && cp -v bash/.bash_extras ~/.bash_extras
 
 info "Copying across dotfiles requirements"
 
