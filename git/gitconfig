@@ -1,6 +1,8 @@
 [alias]
     ci = commit
     pu = push
+    co = checkout
+    cp = commit -p
 [core]
 	# Use custom `.gitignore`
 	excludesfile = ~/.gitignore
