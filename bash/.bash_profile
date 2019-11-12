@@ -101,7 +101,12 @@ function parse_git_branch() {
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="> "
 
-export PS1="\[${MAGENTA}\]\u@\[$RESET\]\[$PURPLE\]\h \[$RESET\]in \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n$symbol\[$RESET\]"
+if [[ -z "${SSH_CONNECTION}" ]]; then
+    export PS1="\[${MAGENTA}\]\u@\[$RESET\]\[$PURPLE\]\h \[$RESET\]in \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n$symbol\[$RESET\]"
+else
+    export PS1="\[${MAGENTA}\]\u@\[$RESET\]\[$ORANGE\]\h \[$RESET\]in \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n$symbol\[$RESET\]"
+fi
+
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 
