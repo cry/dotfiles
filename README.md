@@ -1,3 +1,3 @@
-# dotfiles
+# .dotfiles
 
-hi its my dotfiles
+Here be my dotfiles.
