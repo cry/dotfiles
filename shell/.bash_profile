@@ -24,6 +24,8 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+alias sl="ls"
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
 }
@@ -33,7 +35,7 @@ function parse_git_branch() {
 
 PS1="┌─[\`if [ \$? = 0 ]; then echo \[\e[32m\]\$?\[\e[0m\]; else echo \[\e[31m\]\$?\[\e[0m\]; fi\`]───[\[\e[01;49;39m\]\u\[\e[00m\]\[\e[01;49;39m\]@\H\[\e[00m\]]───[\[\e[1;49;34m\]\w\[\e[0m\]]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \"───[\$(echo \$(parse_git_branch))]\")\n└───▶ "
 
-# Sttolen from https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
+# Stolen from https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login
 SSH_ENV="$HOME/.ssh/env"
 
 function start_agent {(

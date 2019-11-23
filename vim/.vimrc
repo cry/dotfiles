@@ -4,6 +4,11 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
+" Source system-specific .vimrc first.
+if filereadable(expand('~/.local/dotfiles/.vimrc'))
+    source ~/.local/dotfiles/.vimrc
+endif
+
 colorscheme nord
 syntax on
 
