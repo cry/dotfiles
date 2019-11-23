@@ -40,3 +40,6 @@ set foldmethod=indent
 set foldnestmax=2
 nnoremap <space> za
 vnoremap <space> zf
+
+" Golang
+let g:go_fmt_command = "goimports"
