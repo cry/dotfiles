@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
 DIRCOLOR_COMMAND="dircolors"
+LS_COMMAND=ls
 
 export EDITOR=vim
 export PAGER=less
 
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
-    alias ls="gls --color=always"
+    LS_COMMAND=gls
     DIRCOLOR_COMMAND="gdircolors"
 fi
+
+alias ls="${LS_COMMAND} --color=always"
 
 eval "$(${DIRCOLOR_COMMAND} ~/.dir_colors)"
 
