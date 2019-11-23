@@ -6,7 +6,9 @@ if [[ ! -d ~/.local/dotfiles ]]; then
     mkdir -p ~/.local/dotfiles
 fi
 
-for d in {shell,tmux,vim};  do
+for d in */;  do
+    [[ $d =~ '.' ]] && continue
+
     echo "[+] Entering $d"
 
     pushd $d > /dev/null 2>&1
