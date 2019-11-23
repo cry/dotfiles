@@ -13,4 +13,7 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+export EDITOR=$(which nvim)
+export PAGER=$(which less)
+
 eval "$(${DIRCOLOR_COMMAND} ~/.dir_colors)"
