@@ -5,6 +5,8 @@
     ci = commit
     cp = commit -p
     pu = push
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
 [core]
 	# Use custom `.gitignore`
 	excludesfile = ~/.gitignore
