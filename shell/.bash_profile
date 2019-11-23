@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Source any user settings, if applicable
+if [[ -f ~/.local/dotfiles/.bash_profile ]]; then
+    . ~/.local/dotfiles/.bash_profile
+fi
+
 DIRCOLOR_COMMAND="dircolors"
 LS_COMMAND=ls
 
