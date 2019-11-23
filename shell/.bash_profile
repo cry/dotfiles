@@ -10,6 +10,7 @@ LS_COMMAND=ls
 
 export EDITOR=vim
 export PAGER=less
+export PATH=~/.local/bin:${PATH}
 
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
     LS_COMMAND=gls

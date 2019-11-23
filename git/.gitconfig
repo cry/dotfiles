@@ -3,6 +3,7 @@
     email = hello@carey.li
 [alias]
     ci = commit
+    co = checkout
     cp = commit -p
     pu = push
     ignore = update-index --assume-unchanged
