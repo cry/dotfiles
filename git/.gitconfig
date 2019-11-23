@@ -13,6 +13,8 @@
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
+[include]
+    path = ~/.local/dotfiles/.gitconfig
 [color "branch"]
 	current = yellow reverse
 	local = yellow
