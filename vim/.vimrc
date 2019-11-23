@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
