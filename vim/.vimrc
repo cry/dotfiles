@@ -33,6 +33,8 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.css :%s/\s\+$//e
 autocmd BufWritePre *.html :%s/\s\+$//e
 
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
+
 set timeoutlen=1000 ttimeoutlen=0
 
 " Folds

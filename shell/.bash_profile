@@ -19,6 +19,7 @@ if [[ "${OSTYPE}" =~ "darwin" ]]; then
     DIRCOLOR_COMMAND="gdircolors"
 fi
 
+alias sudo='sudo '
 alias ls="${LS_COMMAND} --color=always"
 
 eval "$(${DIRCOLOR_COMMAND} ~/.dir_colors)"
