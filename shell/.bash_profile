@@ -77,5 +77,7 @@ else
     start_agent;
 fi
 
+complete -W "$(grep -oP 'Host\s\K[^*]+$' ~/.ssh/config)" ssh
+
 # Initialize z.sh
 . ~/.z.sh
