@@ -6,6 +6,7 @@ if [[ -f ~/.local/dotfiles/.bash_profile ]]; then
 fi
 
 DIRCOLOR_COMMAND="dircolors"
+GREP_COMMAND=grep
 LS_COMMAND=ls
 
 export EDITOR=vim
@@ -16,6 +17,7 @@ export PATH=~/.local/bin:${PATH}
 
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
     LS_COMMAND=gls
+    GREP_COMMAND=ggrep
     DIRCOLOR_COMMAND="gdircolors"
 fi
 
@@ -77,7 +79,8 @@ else
     start_agent;
 fi
 
-complete -W "$(grep -oP 'Host\s\K[^*]+$' ~/.ssh/config)" ssh
+complete -W "$(${GREP_COMMAND} -oP 'Host\s\K[^*]+$' ~/.ssh/config)" ssh
 
 # Initialize z.sh
 . ~/.z.sh
+
